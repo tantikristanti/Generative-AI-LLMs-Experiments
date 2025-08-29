@@ -213,12 +213,8 @@ brew install pgvector
 
 ## Quick Start
 
-### Clone the repository
-
 ```bash
-git clone https://github.com/tantikristanti/Generative-AI-Experiments/tree/main/rag-pdf-llama-index.git
-
-cd rag-pdf-llama-index
+cd rag-pdf-llama-index-gradio
 ```
 
 ### Initialize a Project and Set Up the Environment

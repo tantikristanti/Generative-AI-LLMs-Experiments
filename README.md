@@ -4,3 +4,18 @@ Generative AI encompasses computational techniques designed to generate original
 
 This repository contains experiments of implementing different models, libraries, and applications within Large Language Models (LLM) based generative AI (Gen AI) to identify optimal technologies across diverse domains and scenarios. Each subdirectory provides detailed insights into specific systems, encompassing their operational workflows, libraries, source code, and experimental results.
 
+---
+## Prerequisites
+
+- Python 3.8 or higher
+- pip
+- `uv`: a Python package manager written in Rust
+
+## Clone the repository
+
+```bash
+git clone https://github.com/tantikristanti/Generative-AI-LLMs-Experiments.git
+
+cd Generative-AI-LLMs-Experiments
+```
+
