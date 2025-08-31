@@ -1,7 +1,7 @@
 import time
 import os
 from dotenv import load_dotenv 
-from utilities.document_handler import process_pdfs, split_docs
+from utilities.document_handler import load_document_from_files, split_docs
 from utilities.vector_handler import generate_embeddings, create_collection, create_vector_store
 from utilities.retriever import get_retriever
 from utilities.chat_handler import generate_response
@@ -19,20 +19,20 @@ class rag_pdf_chatbot():
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap
     
-    def rag_workflow(self, pdfPath, question):
+    def rag_workflow(self, filePath, question):
         """
         The RAG main process to generate responses to end user questions based on the information in the PDF file.
 
         Args:
-            pdfPath (str): The PDF path
+            filePath (str): The file path
             question (str): The question from the end-user
 
         Returns:
             str: The LLM responses after cleaning 
         """
         
-        # 1. Load the PDF file and extract the text
-        docs = process_pdfs(pdfPath)
+        # 1. Load the files and extract the text
+        docs = load_document_from_files(filePath)
         
         # 2. Split the documents into chunks
         doc_splits = split_docs(docs, self.chunk_size, self.chunk_overlap)

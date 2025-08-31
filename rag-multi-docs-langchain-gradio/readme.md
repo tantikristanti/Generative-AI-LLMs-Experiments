@@ -1,4 +1,4 @@
-# LLM-Based RAG using PDFs as Knowledge Base - (Version 1)
+# Multi-Document LLM-Based RAG - (Version 1)
 
 ## Introduction
 
@@ -6,7 +6,7 @@ Large language models (LLMs), such as GPT or Llama, excel in generating response
 
 Retrieval Augmented Generation (RAG) addresses these issues by retrieving relevant information from external sources, such as websites, databases, or files (e.g., PDFs and CSVs). RAG enhances the reliability of generative AI systems in fields that require real-time data and specialized expertise.
 
-This repository presents an example of an RAG system that integrates PDF documents as a knowledge base using LangChain, Chroma, Ollama, and Gradio. The implemented codes are sourced and adapted from the official documentation of Generative AI-based technology used in this example, accessible in the [References](#references) section.
+This repository presents an example of a RAG system that integrates various document types (CSV, TXT, DOCX, PDF) as a knowledge base using LangChain, Chroma, Ollama, and Gradio. The implemented code is sourced and adapted from the official documentation of the Generative AI-based technology used in this example, which can be accessed in the [References](#references) section.
 
 ---
 
@@ -22,7 +22,7 @@ By combining external data retrieval with advanced text generation techniques, t
 
 The RAG process in this example is structured into the following key steps:
 
-![alt text](images/rag-workflow.png "RAG PDF Chatbot")
+![alt text](images/rag-workflow.png "RAG Workflow Chatbot")
 
 1. Load and extract data
 
@@ -57,14 +57,14 @@ The final step involves feeding these enriched prompts, including the user’s q
 3. [Langchain](https://www.langchain.com/)
 4. [Embedding models](https://ollama.com/blog/embedding-models) (e.g., nomic-embed-text)
 5. [ChromaDB](https://github.com/chroma-core/chroma) as the embedding database or the vector store
-6. [Gradio](https://www.gradio.app/) or Streamlit(https://streamlit.io/)
+6. [Gradio](https://www.gradio.app/)
 
 ---
 
 ## Quick Start
 
 ```bash
-cd rag-pdf-langchain-gradio
+cd rag-multi-docs-langchain-gradio
 ```
 
 ### Install Ollama and LLMs Locally
@@ -113,24 +113,24 @@ uv add -r requirements.txt
 4. Create environment variables composed of:
 
 ```bash
-MODEL_NAME=[the_LLM]
-EMBEDDING_NAME=[the_embedding_model]
-CHUNK_SIZE=[the_chunk_size]
-CHUNK_OVERLAP=[the_chunk_overlap_size]
+MODEL_NAME=[LLM]
+EMBEDDING_NAME=[embedding_model]
+CHUNK_SIZE=[chunk_size]
+CHUNK_OVERLAP=[chunk_overlap_size]
 
 ```
 
 ### Running the Application
 
 ```bash
-python rag-pdf-langchain-gradio.py
+python rag-multi-docs-langchain.py
 ```
 
 The running application is listening on localhost, port 7860: **http://localhost:7860**
 
 ### Results
 
-This application can be run as a local MCP server and called by various MCP clients, such as Gradio and Claude Desktop. For example, the following demonstration shows the server being called by a Claude Desktop client.
+The application can be run as a local MCP server and called by various MCP clients, such as Gradio and Claude Desktop. For example, the following demonstration shows the server being called by a Claude Desktop client.
 
 ![alt text](images/result_2.png "Claude Desktop Chatbot")
 

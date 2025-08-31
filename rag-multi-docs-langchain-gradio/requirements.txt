@@ -1,0 +1,15 @@
+chromadb
+gradio
+gradio[mcp]
+langchain
+langchain_community
+langchain-core
+langchain-ollama
+langchain-chroma
+langchain-huggingface
+ollama
+pdfplumber
+python-dotenv
+pypdf
+docx2txt
+
