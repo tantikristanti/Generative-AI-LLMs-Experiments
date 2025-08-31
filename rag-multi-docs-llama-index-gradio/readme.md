@@ -308,7 +308,7 @@ By monitoring the application while it is running using [nvtop](https://github.c
 
 [4] [LlamaIndex Documentation](https://docs.llamaindex.ai/en/stable/)
 
-[5] LlamaIndex Readers Integration: File](https://llamahub.ai/l/readers/llama-index-readers-file?from=)
+[5] [LlamaIndex Readers Integration: File](https://llamahub.ai/l/readers/llama-index-readers-file?from=)
 
 [6] [Setting up a PostgreSQL Database on Mac](https://www.sqlshack.com/setting-up-a-postgresql-database-on-mac/)
 
