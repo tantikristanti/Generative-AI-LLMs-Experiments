@@ -1,4 +1,4 @@
-# Multi-Document LLM-Based RAG - (Version 2)
+# LLM-Based RAG using PDFs as Knowledge Base - (Version 2)
 
 ## Introduction
 
@@ -6,7 +6,7 @@ Large language models (LLMs), such as GPT or Llama, excel in generating response
 
 Retrieval Augmented Generation (RAG) addresses these issues by retrieving relevant information from external sources, such as websites, databases, or files (e.g., PDFs and CSVs). RAG enhances the reliability of generative AI systems in fields that require real-time data and specialized expertise.
 
-This repository presents an example of a RAG system that integrates various document types (CSV, TXT, DOCX, PDF) as a knowledge base using LlamaIndex, PostgreSQL, LLaMA.cpp, Sentence Transformers models on the Hugging Face Hub, and Gradio. The implemented code is sourced and adapted from the official documentation of the Generative AI-based technology used in this example, which can be accessed in the [References](#references) section.
+This repository presents an example of an RAG system that integrates PDF documents as a knowledge base using LlamaIndex, PostgreSQL, LLaMA.cpp, Sentence Transformers models on the Hugging Face Hub, and Gradio. The implemented codes are sourced and adapted from the official documentation of Generative AI-based technology used in this example, accessible in the [References](#references) section.
 
 ---
 
@@ -214,7 +214,7 @@ brew install pgvector
 ## Quick Start
 
 ```bash
-cd rag-multi-docs-llama-index-gradio
+cd rag-pdf-llama-index-gradio
 ```
 
 ### Initialize a Project and Set Up the Environment
@@ -261,7 +261,7 @@ EMBED_DIM=[the_embedding_size]
 To run the application, simply type the following command:
 
 ```bash
-python rag-multi-docs-llama-index.py
+python rag-pdf-llama-index.py
 ```
 
 ---
@@ -276,11 +276,11 @@ This application can be run as a local MCP server and called by various MCP clie
 
 ### Execution time
 
-Using this article [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://proceedings.neurips.cc/paper_files/paper/2020/file/6b493230205f780e1bc26945df7481e5-Paper.pdf) (912 KB, 16 pages) as a knowledge base and using `deepseek-r1` as the LLM and `all-MiniLM-L6-v2` as the embedding model, the process took about 102 seconds, including document ingestion, query result retrieval, and response generation cycles.
+Using this article [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783) (9.8 MB, 92 pages) as a knowledge base and using `deepseek-r1` as the LLM and `all-MiniLM-L6-v2` as the embedding model, the process took about 81 seconds, including document ingestion, query result retrieval, and response generation cycles.
 
 ![alt text](images/result_1.png "Gradio Chatbot")
 
-Based on this initial process, experimental results across various scenarios show that processing time is affected by data volume, embedding model, and LLM selection. For example, using `Llama3.2` as the LLM and `all-MiniLM-L6-v2` as the embedding model for the same document resulted in a shorter processing time of only 39 seconds.
+Based on this initial process, experimental results across various scenarios show that processing time is affected by data volume, embedding model, and LLM selection. For example, using `Llama3.2` as the LLM and `all-MiniLM-L6-v2` as the embedding model for the same document resulted in a shorter processing time of 18 seconds.
 
 ![alt text](images/result_3.png "Gradio Chatbot")
 
@@ -308,16 +308,14 @@ By monitoring the application while it is running using [nvtop](https://github.c
 
 [4] [LlamaIndex Documentation](https://docs.llamaindex.ai/en/stable/)
 
-[5] [LlamaIndex Readers Integration: File](https://llamahub.ai/l/readers/llama-index-readers-file?from=)
+[5] [Setting up a PostgreSQL Database on Mac](https://www.sqlshack.com/setting-up-a-postgresql-database-on-mac/)
 
-[6] [Setting up a PostgreSQL Database on Mac](https://www.sqlshack.com/setting-up-a-postgresql-database-on-mac/)
+[6] [SentenceTransformers Documentation](https://sbert.net/)
 
-[7] [SentenceTransformers Documentation](https://sbert.net/)
+[7] [LLaMA.cpp Documentation](https://llama-cpp-python.readthedocs.io/en/latest/)
 
-[8] [LLaMA.cpp Documentation](https://llama-cpp-python.readthedocs.io/en/latest/)
+[8] [Hugging Face Spaces](https://huggingface.co/spaces)
 
-[9] [Hugging Face Spaces](https://huggingface.co/spaces)
+[9] [pgvector](https://github.com/pgvector/pgvector)
 
-[10] [pgvector](https://github.com/pgvector/pgvector)
-
-[11] [Gradio Documentation](https://www.gradio.app/docs)
+[10] [Gradio Documentation](https://www.gradio.app/docs)
