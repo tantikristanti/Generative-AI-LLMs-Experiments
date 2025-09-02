@@ -117,7 +117,7 @@ MODEL_NAME=[LLM]
 EMBEDDING_NAME=[embedding_model]
 CHUNK_SIZE=[chunk_size]
 CHUNK_OVERLAP=[chunk_overlap_size]
-
+CHROMA_PATH='./chroma_db'
 ```
 
 ### Running the Application

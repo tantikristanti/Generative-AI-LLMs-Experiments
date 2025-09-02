@@ -104,7 +104,7 @@ class rag_pdf_chatbot():
         # 7. Extract the response
         response = generate_response(query_engine, query)
         
-        end_time = "\n\n--- Time required to execute the application and provide a response : %.2f seconds ---" % (time.time() - start_time)
+        end_time = "\n\n--- Using %s, the time required to execute the application and provide a response : %.2f seconds ---"   %  (self.model_name, (time.time() - start_time))
         
         return response + end_time
 

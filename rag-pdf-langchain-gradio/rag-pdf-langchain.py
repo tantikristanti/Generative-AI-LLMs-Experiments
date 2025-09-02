@@ -51,8 +51,7 @@ class rag_pdf_chatbot():
         # 6. Format the input prompt and generate the response
         response = generate_response(self.model_name, question, retriever)
         
-        end_time = "\n\n--- Time required to execute the application and provide a response : %.2f seconds ---" % (time.time() - start_time)
-        
+        end_time = "\n\n--- Using %s, the time required to execute the application and provide a response : %.2f seconds ---"   %  (self.model_name, (time.time() - start_time))
         return response + end_time
 
 if __name__ == "__main__":
