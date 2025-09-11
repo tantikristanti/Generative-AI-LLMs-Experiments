@@ -1,5 +1,6 @@
 import time
 import os
+from huggingface_hub import login
 from dotenv import load_dotenv
 from utilities.document_handler import process_pdfs, load_document_from_files, split_docs, construct_nodes
 from utilities.vector_handler import generate_nodes_embedding, vectorstore_nodes, \
@@ -16,19 +17,22 @@ class rag_pdf_chatbot():
     The RAG workflow class.
 
     """
-    def __init__(self, model_path, 
+    def __init__(self, hf_token,
+                 model_path, 
                  embedding_path, 
                  chunk_size, 
                  chunk_overlap,
                  db_name,
                  db_type,
                  host,
-                 user,
+                 user, 
                  password,
                  port,
                  table_name,
                  embed_dim
                  ):
+        
+        self.hf_token = hf_token
         self.model_path = model_path
         self.embedding_path = embedding_path
         self.chunk_size = chunk_size
@@ -57,6 +61,9 @@ class rag_pdf_chatbot():
         Returns:
             str: The LLM responses after cleaning 
         """
+        # Login to access the private model
+        login(token=hf_token)#inference-only token
+        
         #------- Define the embedding model and the LLM -------
         embedding_model = load_embedding_model(self.embedding_path)
         llm = load_llm(model_path=self.model_path)
@@ -64,7 +71,6 @@ class rag_pdf_chatbot():
         #------- Ingestion Pipeline -------
         # 1. Load the PDF file and extract the text
         docs = load_document_from_files(pdfPath)
-        #docs = process_pdfs(pdfPath)
         
         # 2. Split the documents into chunks
         doc_splits, doc_idxs = split_docs(docs, self.chunk_size, self.chunk_overlap)
@@ -105,7 +111,7 @@ class rag_pdf_chatbot():
         # 7. Extract the response
         response = generate_response(query_engine, query)
         
-        end_time = "\n\n--- Using %s, the time required to execute the application and provide a response : %.2f seconds ---"   %  (self.model_name, (time.time() - start_time))
+        end_time = "\n\n--- Using %s, the time required to execute the application and provide a response : %.2f seconds ---"   %  (self.model_path, (time.time() - start_time))
         
         return response + end_time
 
@@ -114,28 +120,31 @@ if __name__ == "__main__":
     
     # Load environment variables from the .env file (if present)
     load_dotenv()
-
+    
     # Read the environment variables 
+    hf_token = os.getenv('HF_TOKEN')
+
     ## The LLM, embedding model, chunk size, and chunk overlap for document processing
-    model_path = os.getenv('MODEL_PATH')
-    embedding_path= os.getenv('EMBEDDING_PATH')
-    chunk_size = int(os.getenv('CHUNK_SIZE'))
-    chunk_overlap = int(os.getenv('CHUNK_OVERLAP'))
+    model_path = 'models/LLM/Llama-3.2-1B-Instruct-Q4_K_M.gguf'
+    embedding_path= 'kristanti/distiluse-base-matryoshka-french-labor-code'
+    chunk_size = 1000
+    chunk_overlap = 200
     
     ## The setting for connecting to a Postgres DB 
-    db_name = os.getenv('DB_NAME')
-    db_type = os.getenv('DB_TYPE')
-    host = os.getenv('HOST')
-    user = os.getenv('USER')
-    password = os.getenv('PASSWORD')
-    port = int(os.getenv('PORT'))
+    db_name = 'postgres_vector_db' 
+    db_type = 'postgres' 
+    host = 'localhost'
+    user = 'postgres'
+    password = 'password'
+    port = 5432
     
     ## The setting for creating a vector store in a Postgres DB
-    table_name = os.getenv('TABLE_NAME')
-    embed_dim = int(os.getenv('EMBED_DIM')) # the embedding dimension
+    table_name = 'vector_document'
+    embed_dim = 512
     
     # Call the 
-    rag_application = rag_pdf_chatbot(model_path,
+    rag_application = rag_pdf_chatbot(hf_token,
+                                      model_path,
                                       embedding_path,
                                       chunk_size,
                                       chunk_overlap,

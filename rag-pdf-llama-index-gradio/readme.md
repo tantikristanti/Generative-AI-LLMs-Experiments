@@ -102,6 +102,8 @@ For example:
 llama-cli -m Llama-3.2-1B-Instruct-Q4_K_M.gguf
 ```
 
+c. Save the model locally, for example in `models/LLM/`
+
 4. [LlamaIndex](https://www.llamaindex.ai/)
 
 Install [LlamaIndex](https://docs.llamaindex.ai/en/stable/getting_started/installation/) using pip
@@ -239,22 +241,6 @@ source .venv/bin/activate
 uv add -r requirements.txt
 ```
 
-4. Create environment variables composed of:
-
-```bash
-MODEL_PATH=[the_LLM]
-EMBEDDING_PATH=[the_embedding_model]
-CHUNK_SIZE=[the_chunk_size]
-CHUNK_OVERLAP=[the_chunk_overlap_size]
-DB_NAME=[the_database_name]
-DB_TYPE='postgres'
-HOST='localhost'
-USER=[the_user_name] 
-PASSWORD=[the_password]
-PORT='5432'
-TABLE_NAME=[the_table_name]
-EMBED_DIM=[the_embedding_size]
-```
 
 ### Running the Application
 

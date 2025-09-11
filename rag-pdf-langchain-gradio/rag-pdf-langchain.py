@@ -5,7 +5,7 @@ from utilities.document_handler import process_pdfs, split_docs
 from utilities.vector_handler import generate_embeddings, create_collection, create_vector_store
 from utilities.retriever import get_retriever
 from utilities.chat_handler import generate_response
-from utilities.interface import gradio_interface
+from utilities.interface import gradio_interface, gradio_interface_theme_1, gradio_interface_theme_2
 
 class rag_pdf_chatbot():
     """
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     rag_application = rag_pdf_chatbot(model_name, embedding_name, chroma_path, chunk_size, chunk_overlap)
     
     # The Gradio interface
-    gr_interface = gradio_interface(rag_application.rag_workflow)
+    gr_interface = gradio_interface_theme_1(rag_application.rag_workflow)
     
     # Running the application
     gr_interface.launch()

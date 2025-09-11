@@ -30,8 +30,8 @@ def initiate_vector_store(db_name,
                         user, 
                         password, 
                         port, 
-                        table_name="llama3_document",
-                        embed_dim=384): # check the embedding model dimensions (384, 768) 
+                        table_name,
+                        embed_dim): # check the embedding model dimensions (384, 768) 
     
     """
     Initiate a Postgres vector store.

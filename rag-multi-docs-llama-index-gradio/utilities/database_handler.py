@@ -1,11 +1,11 @@
 import psycopg2
 
 def connect_db(db_name,
-               db_type="postgres",
-               host="localhost",
-               user="newuser", 
-               password="newuser",
-               port="5432"
+               db_type,
+               host,
+               user, 
+               password,
+               port
                ):
     """
     Load the pre-trained embedding model. 
@@ -13,7 +13,8 @@ def connect_db(db_name,
     If it is not a path, it first tries to download a pre-trained SentenceTransformer model.
 
     Args:
-        db_name, host, port, user, password (str): The data for creating a vector store
+        db_name, db_type, host, port, user, password (str): The data for creating a vector store
+        port (int): The port of the database to connect to
 
     Returns:
         HuggingFaceEmbedding: The HuggingFace embedding model
