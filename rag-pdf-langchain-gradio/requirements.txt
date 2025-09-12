@@ -10,4 +10,4 @@ langchain-huggingface
 ollama
 pdfplumber
 python-dotenv
-
+sentence-transformers

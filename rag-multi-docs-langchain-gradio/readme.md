@@ -128,19 +128,17 @@ This application can be run as a local MCP server and called by various MCP clie
 
 Experimental results across various data scenarios demonstrate that processing time is affected by data volume, embedding model, and LLM selection. Improved context response is achieved by LLM running locally through Ollama on a 16GB MacBook M2 Pro.
 
-1. Using this article [The Llama 3 Herd of Models](https://arxiv.org/abs/2407.21783) (9.8 MB, 92 pages) as a knowledge base and using `deepseek-r1` as an embedding model and LLM, the process took about 15 minutes, including document ingestion, query result retrieval, and response generation cycles. Meanwhile, using `Llama3.2` for the same document resulted in a shorter processing time of around 7 minutes.
+Using multiple articles (1.2 MB) in various formats (docx, txt, pdf) as the knowledge base and using `deepseek-r1` as the embedding model and LLM, the process took about 8 minutes, including document ingestion, query result retrieval, and response generation cycles.
 
 ![alt text](images/result_2.png "Gradio Chatbot")
+
+Meanwhile, using `Llama3.2` for the same documents resulted in a shorter processing time, about 1.5 minutes.
 
 ![alt text](images/result_3.png "Gradio Chatbot")
 
 The response to questions in French on the same document:
 
 ![alt text](images/result_4.png "Gradio Chatbot")
-
-2. By using an article [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html) with a much smaller size(890 KB, 16 pages) and using `deepseek-r1` as an embedding model and LLM, the system can provide answers to user questions (in French) within 5 minutes.
-
-![alt text](images/result_5.png "Gradio Chatbot")
 
 By monitoring the application while it is running using `ollama ps` and [nvtop](https://github.com/Syllo/nvtop), it can be seen from the image that Ollama allocates most of the GPU resources when calling LLM. After completion, the memory is returned to the CPU.
 

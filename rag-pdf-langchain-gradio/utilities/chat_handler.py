@@ -22,18 +22,18 @@ def generate_response(model_name, question, retriever):
     chat_model = ChatOllama(model=model_name)
 
     # Create a chat prompt template from a template string
-    after_rag_prompt = ChatPromptTemplate.from_template(generate_prompt())
+    chat_prompt = ChatPromptTemplate.from_template(generate_prompt())
     
     # Create a chat prompt chain
-    after_rag_chain = (
+    rag_chain = (
         {"context": retriever, "question": RunnablePassthrough()}
-        | after_rag_prompt
+        | chat_prompt
         | chat_model
         | StrOutputParser()
     )
     
     # Generate the response 
-    response = after_rag_chain.invoke(question)
+    response = rag_chain.invoke(question)
     
     # Remove the <think> tags from the response  
     final_response = re.sub(r'<think>.*?</think>', '', str(response), flags=re.DOTALL).strip()
